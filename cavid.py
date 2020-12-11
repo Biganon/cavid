@@ -10,7 +10,7 @@ from multiprocessing import Pool, Value, Lock
 from ctypes import c_int
 
 original = sys.argv[1]
-threshold = 0.3
+threshold = 0.2
 mask = "mask.png"
 
 LOG_INFO = 0
@@ -33,7 +33,7 @@ def check_or_die(cp):
 ### DECOUPAGE
 
 log(f"Commence l'extraction des timecodes de changements de scène (seuil = {threshold})...", LOG_INFO)
-cp = subprocess.run(["ffmpeg", "-i", original, "-filter:v", "select='gt(scene,0.3)',showinfo", "-f", "null", "-"],
+cp = subprocess.run(["ffmpeg", "-i", original, "-filter:v", "select='gt(scene,0.2)',showinfo", "-f", "null", "-"],
                     capture_output=True, stdin=subprocess.DEVNULL)
 
 check_or_die(cp)
